@@ -1,0 +1,84 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+
+#meta-crm-widget-container {
+  z-index: 5000;
+}
+
+#meta-crm-widget {
+  left: -15px;
+  bottom: -65px;
+}
+
+/* this query is 767px due to MetaCrm internal handling of viewport resize */
+@media (max-width: 767px) {
+  #meta-crm-widget {
+    left: 0px;
+    bottom: 0px;
+    z-index: 5000;
+  }
+}
+
+@media (min-width: 767px) {
+  body.darkened-overlay::before {
+    background-color: rgba(20, 24, 82, 0.50);
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 24, 82, 0);
+  z-index: 50;
+  pointer-events: none;
+  transition: background-color 0.1s ease-in-out;
+}
+
+#meta-crm-widget {
+  transition: left 0.1s ease-in-out;
+}
